@@ -99,16 +99,20 @@ The result is some like this:
 
 ## How can i use this?
 
-You can build a json with templates. Any property of your json you want to generate is a template.
-
-The templates has the following format:
+First, install it: `npm install camusjs`
 
 ```js
-{
+var camusjs = require('camusjs')
+
+var myTemplate = {
   "myProperty": {
     "*": "type of the generator"
   }
 }
+
+var generated = camusjs.parse(myTemplate)
+
+// done
 ```
 
 ### ChanceJS
@@ -239,5 +243,66 @@ In this sample, we generate an array with misc objects and numbers. The result m
 			"myPropName": "Lucinda Jordan"
 		}
 	]
+}
+```
+
+### Allowing NULLS
+
+If you want to some template returns `null` in some case, use the `chanceToBeNull` modifier:
+
+```js
+{
+	"id": {
+		"*": "guid",
+		"chanceToBeNull": 15 // in this case, 15% of the times, the id will returns null.
+	}
+}
+```
+
+All templates accept this modifier =).
+
+### Using static values
+
+You can use fixed informed values using the `option_value` and `options`:
+
+```js
+var template = {
+	id: {
+		"*": "option_value",
+		property: 'myId'
+	}
+}
+
+var generated = camusjs.parse(template, {
+	myId: 'abc123'
+})
+```
+
+## Advanced
+
+### Adding new Parsers
+You can create parsers and append them to the core. For this, create the following:
+
+```js
+var camusjs = require('camusjs')
+
+var newParser = {
+	"*": "my_name_of_generator",
+	converter: function(template, options) {
+		// return your value...
+		return null
+	}
+}
+
+camusjs.registerParser(newParser)
+```
+
+Now you can use:
+
+```js
+{
+	"myProperty": {
+		"*": "my_name_of_generator"
+	}
 }
 ```
