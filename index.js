@@ -1,8 +1,3 @@
-/**
- * options
- * 		- values: Object
- */
-
 var parserList = require('./lib/utils/parser_list')
 var parseValue = require('./lib/utils/parse_value')
 

@@ -1,6 +1,6 @@
 var camusjs = require('../index')
 
-test('gen int: 1 to 10', () => {
+test('object: nested parser', () => {
 	var template = {
 		name: {
 			'*': 'full_name'
@@ -35,4 +35,14 @@ test('gen int: 1 to 10', () => {
 	expect(typeof generated.pet).toBe('object')
 	expect(typeof generated.pet.name).toBe('string')
 	expect(generated.pet.foodTime.afternoon).toBe(14)
+});
+
+test('object: ignore all and parse', () => {
+	var template = {
+		suit: 'spades',
+		value: 11
+	}
+
+	var generated = camusjs.parse(template)
+	expect(JSON.stringify(generated)).toBe(JSON.stringify(template))
 });
