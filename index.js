@@ -9,6 +9,7 @@ var object = require('./lib/parsers/object')
 var array = require('./lib/parsers/array')
 var enumParser = require('./lib/parsers/enum')
 var guid = require('./lib/parsers/guid')
+var optionValue = require('./lib/parsers/option_value')
 
 parserList.registerNew(fullName)
 parserList.registerNew(int)
@@ -17,6 +18,7 @@ parserList.registerNew(object)
 parserList.registerNew(array)
 parserList.registerNew(enumParser)
 parserList.registerNew(guid)
+parserList.registerNew(optionValue)
 
 // register middlewares
 var middlewareList = require('./lib/utils/middleware_list')
