@@ -1,6 +1,8 @@
 # camusjs
 A extensible random objects generator
 
+![camusjs](camusjs_logo.png?raw=true "camusjs")
+
 ## What is this?
 You can translate templates into objects with full random objects.
 
