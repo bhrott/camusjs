@@ -306,3 +306,58 @@ Now you can use:
 	}
 }
 ```
+
+### Adding new middlewares
+
+Middlewares are parsers that runs BEFORE the registered parsers (`chanceToBeNull` is a middleware).
+
+You can register new middlewares:
+
+```js
+var camusjs = require('camusjs')
+
+var myMiddleware = {
+	'#': 'name_of_my_middleware',
+	isGlobal: true, // if must run before ALL transformers
+	converter: function(template, options, result) {
+		// do what you want here
+		var newValue = {} // my new value
+		var mustContinue = true //must execute the next middleware or stops here and return value
+
+		result(newValue, mustContinue)
+	}
+}
+
+camusjs.registerMiddleware(myMiddleware)
+```
+
+For localized middlewares, you can set `isGlobal` to false and add it manually to your parsers:
+
+```js
+var camusjs = require('camusjs')
+
+var myMiddleware = {
+	'#': 'name_of_my_middleware',
+	isGlobal: false, // if must run before ALL transformers
+	converter: function(template, options, result) {
+		// do what you want here
+		var newValue = {} // my new value
+		var mustContinue = true //must execute the next middleware or stops here and return value
+
+		result(newValue, mustContinue)
+	}
+}
+
+camusjs.registerMiddleware(myMiddleware)
+
+var newParser = {
+	"*": "my_name_of_generator",
+	middlewares: ['name_of_my_middleware'],
+	converter: function(template, options) {
+		// return your value...
+		return null
+	}
+}
+
+camusjs.registerParser(newParser)
+```
