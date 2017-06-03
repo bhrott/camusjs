@@ -2,19 +2,21 @@ var parseValue = require('./lib/utils/parse_value')
 
 // register parsers
 var parserList = require('./lib/utils/parser_list')
-var genFullName = require('./lib/parsers/gen_full_name')
-var genInt = require('./lib/parsers/gen_int')
-var genBool = require('./lib/parsers/gen_bool')
+var fullName = require('./lib/parsers/full_name')
+var int = require('./lib/parsers/int')
+var bool = require('./lib/parsers/bool')
 var object = require('./lib/parsers/object')
 var array = require('./lib/parsers/array')
 var enumParser = require('./lib/parsers/enum')
+var guid = require('./lib/parsers/guid')
 
-parserList.registerNew(genFullName)
-parserList.registerNew(genInt)
-parserList.registerNew(genBool)
+parserList.registerNew(fullName)
+parserList.registerNew(int)
+parserList.registerNew(bool)
 parserList.registerNew(object)
 parserList.registerNew(array)
 parserList.registerNew(enumParser)
+parserList.registerNew(guid)
 
 // register middlewares
 var middlewareList = require('./lib/utils/middleware_list')
