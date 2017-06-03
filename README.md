@@ -6,7 +6,7 @@ You can translate templates into objects with full random objects.
 
 This:
 
-```json
+```js
 {
 	"name": {
 		"*": "name"
@@ -25,7 +25,7 @@ This:
 
 Will generate some like this:
 
-```json
+```js
 {
     "name": "Jordan Barnes",
     "age": 18
@@ -34,7 +34,7 @@ Will generate some like this:
 
 If you want some more complex:
 
-```json
+```js
 {
     "name": {
         "*": "name"
@@ -77,7 +77,7 @@ It will generate a person, with a name and 1 to 3 pets. Each pet has a name and 
 
 The result is some like this:
 
-```json
+```js
 {
     "name": "Alvin Ramsey",
     "pets": [
@@ -103,7 +103,7 @@ You can build a json with templates. Any property of your json you want to gener
 
 The templates has the following format:
 
-```json
+```js
 {
   "myProperty": {
     "*": "type of the generator"
@@ -126,7 +126,7 @@ chance.guid();
 
 You can add to your templates using:
 
-```json
+```js
 {
   "id": {
     "*": "guid"
@@ -143,7 +143,7 @@ chance.integer({min: 1, max: 10});
 // -7
 ```
 
-```json
+```js
 {
   "myRandomInt": {
     "*": "integer",
@@ -158,7 +158,7 @@ chance.integer({min: 1, max: 10});
 
 If you want to generate nested objects, use the `object` template:
 
-```json
+```js
 {
     "name": {
         "*": "name"
@@ -179,7 +179,7 @@ If you want to generate nested objects, use the `object` template:
 
 It will generate some like this:
 
-```json
+```js
 {
 	"name": "Andre Ortega",
 	"job": {
@@ -192,7 +192,7 @@ It will generate some like this:
 
 If you want a collection of objects, use the `array` template:
 
-```json
+```js
 {
 	"myArray": {
 		"*": "array",
@@ -225,7 +225,7 @@ If you want a collection of objects, use the `array` template:
 
 In this sample, we generate an array with misc objects and numbers. The result must be some like this:
 
-```json
+```js
 {
 	"myArray": [
 		{
