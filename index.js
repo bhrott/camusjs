@@ -3,16 +3,7 @@
  * 		- values: Object
  */
 
-var genFullName = require('./lib/converters/gen_full_name')
-var genInt = require('./lib/converters/gen_int')
-var genBool = require('./lib/converters/gen_bool')
-
-var converters = [
-	genFullName,
-	genInt,
-	genBool
-]
-
+var parserList = require('./lib/utils/parser_list')
 var parseValue = require('./lib/utils/parse_value')
 
 module.exports = {
@@ -20,17 +11,17 @@ module.exports = {
 		var result = {}
 
 		Object.keys(template).forEach(function(key) {
-			result[key] = parseValue(template[key], options, converters)
+			result[key] = parseValue(template[key], options)
 		})
 
 		return result
 	},
 	utils: {
 		parseValue: function(template, options) {
-			return parseValue(template, options, converters)
+			return parseValue(template, options)
 		}
 	},
 	register: function(newParser) {
-		converters.push(newParser)
+		parserList.registerNew(newParser)
 	}
 }

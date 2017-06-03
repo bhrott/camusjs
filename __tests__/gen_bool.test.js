@@ -3,7 +3,7 @@ var camusjs = require('../index')
 test('gen bool: must return true', () => {
 	var template = {
 		hasCar: {
-			type: 'bool',
+			"*": 'bool',
 			likelihood: 100
 		}
 	}
@@ -15,7 +15,7 @@ test('gen bool: must return true', () => {
 test('gen bool: must return false', () => {
 	var template = {
 		hasCar: {
-			type: 'bool',
+			"*": 'bool',
 			likelihood: 0
 		}
 	}
@@ -27,7 +27,7 @@ test('gen bool: must return false', () => {
 test('gen bool: must return true or false', () => {
 	var template = {
 		hasCar: {
-			type: 'bool',
+			"*": 'bool',
 			likelihood: 50
 		}
 	}

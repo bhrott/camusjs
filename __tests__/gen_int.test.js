@@ -3,7 +3,7 @@ var camusjs = require('../index')
 test('gen int: 1 to 10', () => {
 	var template = {
 		age: {
-			type: "int",
+			"*": "int",
 			min: 1,
 			max: 10
 		}

@@ -3,7 +3,7 @@ var camusjs = require('../index')
 test('gen full name success', () => {
 	var template = {
 		name: {
-			type: "full_name"
+			"*": "full_name"
 		}
 	}
 
