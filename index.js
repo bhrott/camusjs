@@ -7,12 +7,14 @@ var genInt = require('./lib/parsers/gen_int')
 var genBool = require('./lib/parsers/gen_bool')
 var object = require('./lib/parsers/object')
 var array = require('./lib/parsers/array')
+var enumParser = require('./lib/parsers/enum')
 
 parserList.registerNew(genFullName)
 parserList.registerNew(genInt)
 parserList.registerNew(genBool)
 parserList.registerNew(object)
 parserList.registerNew(array)
+parserList.registerNew(enumParser)
 
 // register middlewares
 var middlewareList = require('./lib/utils/middleware_list')
