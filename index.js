@@ -10,6 +10,7 @@ var array = require('./lib/parsers/array')
 var enumParser = require('./lib/parsers/enum')
 var guid = require('./lib/parsers/guid')
 var optionValue = require('./lib/parsers/option_value')
+var number = require('./lib/parsers/number')
 
 parserList.registerNew(fullName)
 parserList.registerNew(int)
@@ -19,6 +20,7 @@ parserList.registerNew(array)
 parserList.registerNew(enumParser)
 parserList.registerNew(guid)
 parserList.registerNew(optionValue)
+parserList.registerNew(number)
 
 // register middlewares
 var middlewareList = require('./lib/utils/middleware_list')
@@ -37,10 +39,8 @@ module.exports = {
 
 		return result
 	},
-	utils: {
-		parseValue: function(template, options) {
-			return parseValue(template, options)
-		}
+	parseValue: function(template, options) {
+		return parseValue(template, options)
 	},
 	registerParser: function(newParser) {
 		parserList.registerNew(newParser)
