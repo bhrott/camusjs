@@ -1,0 +1,44 @@
+{
+	"name": {
+		"$": "full_name"
+	},
+	"age": {
+		"$": "int",
+		"min": 18,
+		"max": 50
+	},
+	"job": {
+		"$": "object",
+		"chanceToBeNull": 10,
+		"definition": {
+			"title": {
+				"$": "single_name"
+			},
+			"salary": {
+				"$": "static",
+				"value": 1500.0
+			},
+			"skills": {
+				"$": "enum",
+				"options": ["developer", "qa"]
+			}
+		}
+	},
+	"pets": {
+		"$": "array",
+		"minLength": 0,
+		"maxLength": 5,
+		"$chanceToBeNull": 0,
+		"types": [
+			{
+				"$": "object",
+				"chanceToAppear": 90,
+				"definition": {
+					"name": {
+						"$": "single_name"
+					}
+				}
+			}
+		]
+	}
+}
