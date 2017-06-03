@@ -361,3 +361,7 @@ var newParser = {
 
 camusjs.registerParser(newParser)
 ```
+
+## Changelog
+
+### 1.1.0: First Release
