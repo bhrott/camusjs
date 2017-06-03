@@ -34,7 +34,10 @@ module.exports = {
 			return parseValue(template, options)
 		}
 	},
-	register: function(newParser) {
+	registerParser: function(newParser) {
 		parserList.registerNew(newParser)
+	},
+	registerMiddleware: function(newMiddleware) {
+		middlewareList.registerNew(newMiddleware)
 	}
 }
