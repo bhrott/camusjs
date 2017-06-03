@@ -41,7 +41,7 @@ test('array with nested types', () => {
 						'*': 'object',
 						definition: {
 							name: {
-								'*': 'full_name'
+								'*': 'name'
 							}
 						}
 					}

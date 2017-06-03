@@ -3,19 +3,21 @@ var camusjs = require('../index')
 test('object: nested parser', () => {
 	var template = {
 		name: {
-			'*': 'full_name'
+			'*': 'name'
 		},
 		pet: {
 			'*': 'object',
 			chanceToBeNull: 0,
 			definition: {
 				name: {
-					'*': 'full_name'
+					'*': 'name'
 				},
 				age: {
-					'*': 'int',
-					min: 1,
-					max: 5
+					'*': 'integer',
+					params: {
+						min: 1,
+						max: 5
+					}
 				},
 				foodTime: {
 					'*': 'object',

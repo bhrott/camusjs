@@ -1,6 +1,6 @@
 var camusjs = require('../index')
 
-test('generating guid success', () => {
+test('bind from option value', () => {
 	var template = {
 		id: {
 			"*": "guid"
@@ -8,5 +8,5 @@ test('generating guid success', () => {
 	}
 
 	var generated = camusjs.parse(template)
-  	expect(typeof generated.id).toBe("string");
+	expect(typeof generated.id).toBe('string')
 });
