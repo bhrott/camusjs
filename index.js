@@ -1,6 +1,7 @@
-var parserList = require('./lib/utils/parser_list')
 var parseValue = require('./lib/utils/parse_value')
 
+// register parsers
+var parserList = require('./lib/utils/parser_list')
 var genFullName = require('./lib/parsers/gen_full_name')
 var genInt = require('./lib/parsers/gen_int')
 var genBool = require('./lib/parsers/gen_bool')
@@ -11,6 +12,13 @@ parserList.registerNew(genInt)
 parserList.registerNew(genBool)
 parserList.registerNew(object)
 
+// register middlewares
+var middlewareList = require('./lib/utils/middleware_list')
+var chanceToBeNull = require('./lib/middlewares/chance_to_be_null')
+
+middlewareList.registerNew(chanceToBeNull)
+
+// lib
 module.exports = {
 	parse: function(template, options) {
 		var result = {}
