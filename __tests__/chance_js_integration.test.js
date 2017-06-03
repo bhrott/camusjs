@@ -1,6 +1,6 @@
 var camusjs = require('../index')
 
-test('bind from option value', () => {
+test('chancejs: guid', () => {
 	var template = {
 		id: {
 			"*": "guid"
@@ -9,4 +9,19 @@ test('bind from option value', () => {
 
 	var generated = camusjs.parse(template)
 	expect(typeof generated.id).toBe('string')
+});
+
+test('chancejs: pickset', () => {
+	var template = {
+		id: {
+			"*": "pickset",
+			args: [
+				['alpha', 'bravo', 'charlie', 'delta', 'echo'],
+				3
+			]
+		}
+	}
+
+	var generated = camusjs.parse(template)
+	expect(generated.id.length).toBe(3)
 });
