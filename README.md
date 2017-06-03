@@ -27,8 +27,8 @@ Will generate some like this:
 
 ```json
 {
-  "name": "Jordan Barnes",
-  "age": 18
+    "name": "Jordan Barnes",
+    "age": 18
 }
 ```
 
@@ -36,15 +36,15 @@ If you want some more complex:
 
 ```json
 {
-  "name": {
-    "*": "name"
-  },
-  "pets": {
-    "*": "array",
-    "minLength": 1,
-    "maxLength": 3,
-    "types": [
-      {
+    "name": {
+        "*": "name"
+    },
+    "pets": {
+        "*": "array",
+        "minLength": 1,
+        "maxLength": 3,
+        "types": [
+            {
 				"chanceToAppear": 80,
 				"definition": {
 					"*": "object",
@@ -68,8 +68,8 @@ If you want some more complex:
 					}
 				}
 			}
-    ]
-  }
+        ]
+    }
 }
 ```
 
@@ -151,5 +151,93 @@ chance.integer({min: 1, max: 10});
       { "min": 1, "max": 10 }
     ]
   }
+}
+```
+
+### Nested Objects
+
+If you want to generate nested objects, use the `object` template:
+
+```json
+{
+    "name": {
+        "*": "name"
+    },
+    "job": {
+        "*": "object",
+        "definition": {
+            "title": {
+                "*": "pickone",
+                "args": [
+                    ["developer", "qa", "manager"]
+                ]
+            }
+        }
+    }
+}
+```
+
+It will generate some like this:
+
+```json
+{
+	"name": "Andre Ortega",
+	"job": {
+		"title": "developer"
+	}
+}
+```
+
+### Array
+
+If you want a collection of objects, use the `array` template:
+
+```json
+{
+	"myArray": {
+		"*": "array",
+		"minLength": 2, // the minimum size of the array
+		"maxLength": 6, // the maximum size of the array
+		"types": [ // the types of content of the array
+			{
+				// if you have multimple tipes of templates in the array,
+				// set the percentage of the template appear.
+				"chanceToAppear": 90,
+				"definition": { // you can use template here.
+					"*": "object",
+					"definition": {
+						"myPropName": {
+							"*": "name"
+						}
+					}
+				}
+			},
+			{
+				"chanceToAppear": 10,
+				"definition": {
+					"*": "integer"
+				}
+			}
+		]
+	}
+}
+```
+
+In this sample, we generate an array with misc objects and numbers. The result must be some like this:
+
+```json
+{
+	"myArray": [
+		{
+			"myPropName": "Georgie Patterson"
+		},
+		6303461331173376,
+		{
+			"myPropName": "Anne Jefferson"
+		},
+		{
+			"myPropName": "Lucinda Jordan"
+		}
+	]
 }
 ```
