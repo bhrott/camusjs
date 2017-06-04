@@ -99,6 +99,34 @@ The result is some like this:
 }
 ```
 
+It can handle only certain path if you want:
+
+```js
+{
+	store: {
+		country: "Brazil",
+		employees: [
+			{
+				"*": "name"
+			}
+		]
+	}
+}
+```
+
+Is translated to some like:
+
+```js
+{
+    "store": {
+        "country": "Brazil",
+        "employees": [
+            "Maud Moran"
+        ]
+    }
+}
+```
+
 ## How can i use this?
 
 First, install it: `npm install camusjs`
@@ -389,5 +417,11 @@ camusjs.registerParser(newParser)
 ```
 
 ## Changelog
+
+### 1.3.0
+* Improve object parsing
+
+### 1.2.0
+* Feat: adding `string_replace`
 
 ### 1.1.0: First Release

@@ -48,3 +48,38 @@ test('object: ignore all and parse', () => {
 	var generated = camusjs.parse(template)
 	expect(JSON.stringify(generated)).toBe(JSON.stringify(template))
 });
+
+test('only nested object have parser', () => {
+	var template = {
+		request: {
+			method: 'GET',
+			url: {
+				"*": "string_replace",
+				value: 'http://api/product/%ID%(/.*)?',
+				searchFor: '%ID%',
+				replaceWith: {
+					"*": "guid"
+				}
+			}
+		}
+	}
+
+	var generated = camusjs.parse(template)
+	expect(typeof template.request.url).toBe('string')
+});
+
+test('nested object in natural array', () => {
+	var template = {
+		store: {
+			country: "Brazil",
+			itens: [
+				{
+					"*": "first"
+				}
+			]
+		}
+	}
+
+	var generated = camusjs.parse(template)
+	expect(template.store.itens.length).toBe(1)
+});
