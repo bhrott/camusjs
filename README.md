@@ -206,7 +206,7 @@ If you want a collection of objects, use the `array` template:
 		"maxLength": 6, // the maximum size of the array
 		"types": [ // the types of content of the array
 			{
-				// if you have multimple tipes of templates in the array,
+				// if you have multimple types of templates in the array,
 				// set the percentage of the template appear.
 				"chanceToAppear": 90,
 				"definition": { // you can use template here.
