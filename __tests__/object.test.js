@@ -82,4 +82,93 @@ test('nested object in natural array', () => {
 
 	var generated = camusjs.parse(template)
 	expect(template.store.itens.length).toBe(1)
-});
+})
+
+test('full request object with options', () => {
+	var template = {
+		"priority": 1,
+		"request": {
+			"method": "POST",
+			"urlPathPattern": {
+				"*": "string_replace",
+				"value": "/api/auth/%CPF%(/.*)?",
+				"searchFor": "%CPF%",
+				"replaceWith": {
+					"*": "option_value",
+					"property": "cpf"
+				}
+			}
+		},
+		"response": {
+			"status": 200,
+			"headers": {
+				"Access-Control-Allow-Origin": "*",
+				"Content-Type": "application/json"
+			},
+			"jsonBody": {
+				"access_token": {
+					"*": "option_value",
+					"property": "access_token_auth_cpf"
+				},
+				"hash": {
+					"*": "option_value",
+					"property": "hash_cpf"
+				},
+				"nomeCliente": {
+					"*": "option_value",
+					"property": "primeiro_nome"
+				},
+				"statusIdentificacao": "20",
+				"token_type": "Bearer"
+			}
+		}
+	}
+
+	var generated = camusjs.parse(template, {
+		cpf: '00011122233',
+		access_token_auth_cpf: 'abc123',
+		hash_cpf: 'qweasd',
+		primeiro_nome: 'ben-hur'
+	})
+
+	var expected = {
+		"priority": 1,
+		"request": {
+			"method": "POST",
+			"urlPathPattern": "/api/auth/00011122233(/.*)?"
+		},
+		"response": {
+			"status": 200,
+			"headers": {
+				"Access-Control-Allow-Origin": "*",
+				"Content-Type": "application/json"
+			},
+			"jsonBody": {
+				"access_token": "abc123",
+				"hash": "qweasd",
+				"nomeCliente": "ben-hur",
+				"statusIdentificacao": "20",
+				"token_type": "Bearer"
+			}
+		}
+	}
+
+	expect(JSON.stringify(generated)).toBe(JSON.stringify(expected))
+})
+
+
+test('null wont result in exception', () => {
+	var template = {
+		store: {
+			country: null,
+			itens: [
+				{
+					"*": "first"
+				}
+			]
+		}
+	}
+
+	var generated = camusjs.parse(template)
+	expect(template.store.itens.length).toBe(1)
+})

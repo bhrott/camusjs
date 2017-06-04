@@ -418,6 +418,9 @@ camusjs.registerParser(newParser)
 
 ## Changelog
 
+### 1.3.1
+* Fixing null exception on parse object
+
 ### 1.3.0
 * Improve object parsing
 

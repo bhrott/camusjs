@@ -1,6 +1,6 @@
 {
   "name": "camusjs",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A extensible random objects generator",
   "main": "index.js",
   "scripts": {
