@@ -128,7 +128,6 @@ Is translated to some like:
     }
 }
 ```
-
 ## How can i use this?
 
 First, install it: `npm install camusjs`
@@ -223,6 +222,17 @@ It will generate some like this:
 	}
 }
 ```
+
+If you want to parse a root object, use `parseValue`:
+
+```js
+var camusjs = require('camusjs')
+
+var randomGuid = camusjs.parseValue({
+	"*": "guid"
+})
+```
+
 
 ### Array
 
@@ -361,6 +371,73 @@ Now you can use:
 		"*": "my_name_of_generator"
 	}
 }
+```
+
+Sample of parser that generate a sword:
+
+```js
+/*
+	want to use:
+	{
+		"*": "sword"
+	}
+
+	and get
+	{
+		"name": "any name of sword",
+		"damage": 12,
+		"price": 300.51
+	}
+*/
+
+var camusjs = require('camusjs')
+
+var swordParser = {
+	"*": "sword",
+	converter: function(template, options) {
+
+		// if your template use generators, you can use
+		// the parseValue method to parse the template for you.
+		return camusjs.parseValue({
+			name: {
+				"*": "name",
+			},
+			damage: {
+				"*": "integer",
+				args: [
+					{ min: 5, max: 20 }
+				]
+			},
+			price: {
+				"*": "floating",
+				args: [
+					{min: 150, max: 550, fixed: 2}
+				]
+			}
+		}, options)
+	}
+}
+
+camusjs.registerParser(swordParser)
+
+var template = {
+	"item": {
+		"*": "sword"
+	}
+}
+
+var generated = camusjs.parse(template)
+
+/*
+	{
+		"item": {
+			"name": "Mitchell Mason",
+			"damage": 9,
+			"price": 257.21
+		}
+	}
+*/
+
 ```
 
 ### Adding new middlewares
