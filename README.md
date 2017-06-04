@@ -1,6 +1,8 @@
 # camusjs
 A extensible random objects generator
 
+[![Build Status](https://travis-ci.org/benhurott/camusjs.svg?branch=master)](https://travis-ci.org/benhurott/camusjs)
+
 ![camusjs](camusjs_logo.png?raw=true "camusjs")
 
 ## What is this?
