@@ -5,10 +5,12 @@ var parserList = require('./lib/utils/parser_list')
 var object = require('./lib/parsers/object')
 var array = require('./lib/parsers/array')
 var optionValue = require('./lib/parsers/option_value')
+var stringReplace = require('./lib/parsers/string_replace')
 
 parserList.registerNew(object)
 parserList.registerNew(array)
 parserList.registerNew(optionValue)
+parserList.registerNew(stringReplace)
 
 // register middlewares
 var middlewareList = require('./lib/utils/middleware_list')

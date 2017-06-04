@@ -280,6 +280,30 @@ var generated = camusjs.parse(template, {
 })
 ```
 
+### String Replacing
+
+If your property has a string value and you want to replace some of this string with a random or option value, use the `string_replace` template:
+
+```js
+var template = {
+	url: {
+		"*": "string_replace",
+		value: 'http://api/authentication/%CPF%(/.*)?', // the raw string
+		searchFor: '%CPF%', // what will be replaced
+		replaceWith: { // the value that be replacer, you can use templates here =).
+			"*": "option_value",
+			property: "cpf"
+		}
+	}
+}
+
+var generated = camusjs.parse(template, {
+	cpf: '00011122244'
+})
+
+// 'http://api/authentication/00011122244(/.*)?'
+```
+
 ## Advanced
 
 ### Adding new Parsers
