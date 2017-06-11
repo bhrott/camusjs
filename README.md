@@ -223,17 +223,6 @@ It will generate some like this:
 }
 ```
 
-If you want to parse a root object, use `parseValue`:
-
-```js
-var camusjs = require('camusjs')
-
-var randomGuid = camusjs.parseValue({
-	"*": "guid"
-})
-```
-
-
 ### Array
 
 If you want a collection of objects, use the `array` template:
@@ -395,10 +384,7 @@ var camusjs = require('camusjs')
 var swordParser = {
 	"*": "sword",
 	converter: function(template, options) {
-
-		// if your template use generators, you can use
-		// the parseValue method to parse the template for you.
-		return camusjs.parseValue({
+		return camusjs.parse({
 			name: {
 				"*": "name",
 			},
@@ -496,6 +482,9 @@ camusjs.registerParser(newParser)
 ```
 
 ## Changelog
+
+### 2.0.0
+* Breaking Change: Removing `parseValue` method. Use `parse` only for all.
 
 ### 1.3.1
 * Fixing null exception on parse object

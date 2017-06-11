@@ -21,15 +21,6 @@ middlewareList.registerNew(chanceToBeNull)
 // lib
 module.exports = {
 	parse: function(template, options) {
-		var result = {}
-
-		Object.keys(template).forEach(function(key) {
-			result[key] = parseValue(template[key], options)
-		})
-
-		return result
-	},
-	parseValue: function(template, options) {
 		return parseValue(template, options)
 	},
 	registerParser: function(newParser) {
