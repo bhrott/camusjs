@@ -483,6 +483,9 @@ camusjs.registerParser(newParser)
 
 ## Changelog
 
+### 2.0.1
+* Fix: fixing wrong template manipulation in loop generation.
+
 ### 2.0.0
 * Breaking Change: Removing `parseValue` method. Use `parse` only for all.
 

@@ -20,13 +20,15 @@ middlewareList.registerNew(chanceToBeNull)
 
 // lib
 module.exports = {
-	parse: function(template, options) {
-		return parseValue(template, options)
-	},
-	registerParser: function(newParser) {
-		parserList.registerNew(newParser)
-	},
-	registerMiddleware: function(newMiddleware) {
-		middlewareList.registerNew(newMiddleware)
-	}
+    parse: function(template, options) {
+        // needed for loop generation
+        const clonedTemplate = JSON.parse(JSON.stringify(template))
+        return parseValue(clonedTemplate, options)
+    },
+    registerParser: function(newParser) {
+        parserList.registerNew(newParser)
+    },
+    registerMiddleware: function(newMiddleware) {
+        middlewareList.registerNew(newMiddleware)
+    }
 }
